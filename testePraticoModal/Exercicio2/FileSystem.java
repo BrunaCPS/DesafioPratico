@@ -41,14 +41,14 @@ public class FileSystem {
                     }
                 }
 
-                String novoArquivo = "aniversariantesDoMes.txt";
+                String novoArquivo = "C:/Consultores/aniversariantesDoMes.txt";
 
                 try (BufferedWriter writer = new BufferedWriter(new FileWriter(novoArquivo))) {
                     for (String aniversariante : aniversariantes) {
                         writer.write(aniversariante);
                         writer.newLine();
                     }
-                    System.out.println("Arquivo de aniversariantes do mês gerado com sucesso: " + novoArquivo);
+                    System.out.println("Arquivo de aniversariantes do mês " + mesAtual + " gerado com sucesso: " + novoArquivo);
 
                 } catch (IOException e) {
                     System.out.println("Erro ao criar o arquivo: " + e.getMessage());

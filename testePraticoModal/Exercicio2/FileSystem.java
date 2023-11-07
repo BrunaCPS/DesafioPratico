@@ -15,22 +15,19 @@ public class FileSystem {
     public static void criaArquivo() {
         Path arquivo = Paths.get("C:/Consultores/dadosConsultores.txt");
 
-        // Verifica a existência do arquivo
         if (Files.exists(arquivo)) {
 
             try {
                 List<String> linhas = Files.readAllLines(arquivo);
 
-                // Obtem mês corrente
                 LocalDate dataAtual = LocalDate.now();
                 Month mesAtual = dataAtual.getMonth();
 
-                // Lista para armazenar os aniversariantes do mês
                 List<String> aniversariantes = new ArrayList<>();
 
                 for (String linha : linhas) {
                     String[] partes = linha.split("\\|");
-                    // Verifica se há pelo menos 3 partes
+
                     if (partes.length >= 3) {
                         String dataNascimento = partes[2];
                         String[] partesData = dataNascimento.split("/");
@@ -44,7 +41,6 @@ public class FileSystem {
                     }
                 }
 
-                // Cria novo arquivo com os aniversariantes do mês
                 String novoArquivo = "aniversariantesDoMes.txt";
 
                 try (BufferedWriter writer = new BufferedWriter(new FileWriter(novoArquivo))) {

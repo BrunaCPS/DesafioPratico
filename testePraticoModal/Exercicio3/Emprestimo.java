@@ -5,30 +5,36 @@ public class Emprestimo {
 
         String colaborador;
         String dataAdmissao;
-        Integer salario;
-        Integer emprestimo;
+        double salario;
+        double emprestimo;
 
         Scanner entrada = new Scanner(System.in);
         System.out.println("Informe o nome do colaborador: ");
         colaborador = entrada.nextLine();
 
-        System.out.println("Informe a data de admissão: ");
+        System.out.println("Informe a data de admissão (dd/mm/yyyy): ");
         dataAdmissao = entrada.nextLine();
 
-        Integer anoAdmissao = Integer.parseInt(dataAdmissao.split("/")[2]);
-        Integer anoAtual = java.time.Year.now().getValue();
-        Integer tempoDeCasa = anoAtual - anoAdmissao;
+        int anoAdmissao = Integer.parseInt(dataAdmissao.split("/")[2]);
+        int anoAtual = java.time.Year.now().getValue();
+        int tempoDeCasa = anoAtual - anoAdmissao;
 
         System.out.println("Informe o salário: ");
-        salario = entrada.nextInt();
+        salario = entrada.nextDouble();
 
         do {
             System.out.println("Informe o valor do empréstimo: ");
-            emprestimo = entrada.nextInt();
-        } while (emprestimo % 2 != 0);
+            emprestimo = entrada.nextDouble();
 
-        if (tempoDeCasa > 5 && emprestimo < salario * 2) {
-            System.out.println("Valor do empréstimo: " + emprestimo + " reais");
+            if(emprestimo % 2 != 0){
+                System.out.println("Insira um valor válido! O valor tem que ser múltiplo de 2...");
+            }
+
+        } while (emprestimo % 2 != 0);
+        
+
+        if (emprestimo % 2 == 0 & tempoDeCasa > 5 && emprestimo < salario * 2) {
+            System.out.println("\nValor do empréstimo: " + emprestimo + " reais");
 
             System.out.println("\nNotas de maior valor: ");
             notasMaiorValor(emprestimo);
@@ -43,22 +49,22 @@ public class Emprestimo {
         } else {
             System.out.println("Agradecemos seu interesse, mas você não atende os requisitos mínimos do programa...");
         }
-
     }
 
-    public static void notasMaiorValor(Integer emprestimo) {
 
-        Integer nota100 = emprestimo / 100;
-        Integer resto100 = emprestimo % 100;
-        Integer nota50 = resto100 / 50;
-        Integer resto50 = resto100 % 50;
-        Integer nota20 = resto50 / 20;
-        Integer resto20 = resto50 % 20;
-        Integer nota10 = resto20 / 10;
-        Integer resto10 = resto20 % 10;
-        Integer nota5 = resto10 / 5;
-        Integer resto5 = resto10 % 5;
-        Integer nota2 = resto5 / 2;
+    public static void notasMaiorValor(double emprestimo) {
+
+        int nota100 = (int) (emprestimo / 100);
+        int resto100 = (int) (emprestimo % 100);
+        int nota50 = resto100 / 50;
+        int resto50 = resto100 % 50;
+        int nota20 = resto50 / 20;
+        int resto20 = resto50 % 20;
+        int nota10 = resto20 / 10;
+        int resto10 = resto20 % 10;
+        int nota5 = resto10 / 5;
+        int resto5 = resto10 % 5;
+        int nota2 = resto5 / 2;
 
         if (nota100 > 0) {
             System.out.println(nota100 + " x 100 reais");
@@ -85,15 +91,15 @@ public class Emprestimo {
 
     }
 
-    public static void notasMenorValor(Integer emprestimo) {
+    public static void notasMenorValor(double emprestimo) {
 
-        Integer nota20 = emprestimo / 20;
-        Integer resto20 = emprestimo % 20;
-        Integer nota10 = resto20 / 10;
-        Integer resto10 = resto20 % 10;
-        Integer nota5 = resto10 / 5;
-        Integer resto5 = resto10 % 5;
-        Integer nota2 = resto5 / 2;
+        int nota20 = (int) (emprestimo / 20);
+        int resto20 = (int) (emprestimo % 20);
+        int nota10 = resto20 / 10;
+        int resto10 = resto20 % 10;
+        int nota5 = resto10 / 5;
+        int resto5 = resto10 % 5;
+        int nota2 = resto5 / 2;
 
         if (nota20 > 0) {
             System.out.println(nota20 + " x 20 reais");
